@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard | AgriBibit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/layout.js" defer></script>
+<script src="js/dashboard.js" defer></script>
+</head>
+<body data-page="dashboard" data-title="Dashboard" data-sub="date">
+<div id="content" style="display:flex;flex-direction:column;gap:20px">
+
+  <section class="hero">
+    <div>
+      <span class="chip">Periode Distribusi Nasional 2026</span>
+      <h2>Performa Penjualan Bibit AgriBibit</h2>
+      <p>Monitoring pergerakan bibit hortikultura dan tanaman hias ke 38 provinsi dengan jaminan kesegaran media tanam.</p>
+      <a class="btn" href="pesanan.html?tab=semua">Kelola Distribusi</a>
+      <span class="btn live"><span class="dot"></span>Live Data Sinkron</span>
+    </div>
+    <svg viewBox="0 0 380 200" role="img" aria-label="Ilustrasi grafik batang isometrik di atas peta"><polygon points="20,130 190,66 360,130 190,194" fill="#E3E8DA"/><polygon points="20,130 190,194 190,204 20,140" fill="#C5CDB8"/><polygon points="360,130 190,194 190,204 360,140" fill="#AEB89F"/><ellipse cx="105" cy="150" rx="20" ry="11" fill="#9DB7A5" opacity=".8"/><ellipse cx="140" cy="165" rx="14" ry="8" fill="#F0C4AA"/><g class="rise r1"><polygon points="160,91 182,102 160,113 138,102" fill="#EEF3EA"/><polygon points="138,102 160,113 160,139 138,128" fill="#D4E2D8"/><polygon points="160,113 182,102 182,128 160,139" fill="#BDD1C3"/></g><g class="rise r2"><polygon points="212,49 234,60 212,71 190,60" fill="#8FC0A2"/><polygon points="190,60 212,71 212,129 190,118" fill="#6FA886"/><polygon points="212,71 234,60 234,118 212,129" fill="#4F8C6A"/></g><g class="rise r3"><polygon points="262,11 284,22 262,33 240,22" fill="#2F6D4F"/><polygon points="240,22 262,33 262,117 240,106" fill="#245A41"/><polygon points="262,33 284,22 284,106 262,117" fill="#1B4332"/></g><path class="march" d="M150 92 L300 28" stroke="#fff" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" fill="none"/><circle class="dot" cx="305" cy="26" r="7" fill="#F0C4AA"/></svg>
+  </section>
+
+  <section class="stats" aria-label="Ringkasan">
+    <div class="card stat" style="--i:0"><div class="top2"><span class="sico o" data-i="box"></span><span class="badge">Katalog</span></div><small>Total Produk</small><b id="st0">233</b></div>
+    <div class="card stat" style="--i:1"><div class="top2"><span class="sico" data-i="truck"></span><span class="badge">Bulanan</span></div><small>Bibit Terkirim</small><b id="st1">3,939</b></div>
+    <div class="card stat" style="--i:2"><div class="top2"><span class="sico" data-i="chat"></span><span class="badge">Proses</span></div><small>Pesanan Proses</small><b id="st2">142</b></div>
+    <div class="card stat" style="--i:3"><div class="top2"><span class="sico o" data-i="warn"></span><span class="badge o">Restock</span></div><small>Stok Menipis</small><b id="st3" class="warn">45</b></div>
+    <div class="card stat" style="--i:4"><div class="top2"><span class="sico" data-i="file"></span><span class="badge">Daily</span></div><small>Laporan Harian</small><b id="st4">118</b></div>
+  </section>
+
+  <section class="row2">
+    <div class="card">
+      <div class="hd"><div><div class="ttl"><h2>Analytics Pengiriman Bibit</h2><span class="lnk" id="aTrend"></span></div><p class="sub2" id="aSub"></p></div>
+        <div class="tabs" id="rangeTabs"><button data-r="hari">1 Hari</button><button data-r="minggu">1 Minggu</button><button data-r="bulan" class="on">1 Bulan</button></div></div>
+      <div class="chart"><canvas id="lineChart" aria-label="Grafik tren pengiriman" role="img"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="hd"><div><h2>Pendapatan &amp; Target</h2><p class="sub2">Total pendapatan per bulan (juta IDR)</p></div></div>
+      <div class="chart" style="height:200px"><canvas id="barChart" aria-label="Grafik pendapatan bulanan" role="img"></canvas></div>
+      <div class="bar" id="bar1"><div class="bl"><span>Target Omset Bibit Buah</span><b></b></div><span class="tk"><i></i></span></div>
+      <div class="bar g" id="bar2"><div class="bl"><span>Efisiensi Ekspedisi</span><b></b></div><span class="tk"><i></i></span></div>
+    </div>
+  </section>
+
+  <section class="row3">
+    <div class="card">
+      <div class="hd"><div><h2>Delivery Performance</h2><p class="sub2">Tingkat keberhasilan kirim tepat waktu</p></div></div>
+      <div class="donut"><canvas id="donut" aria-label="Persentase pengiriman tepat waktu" role="img"></canvas><div class="mid"><b id="dv">0%</b><small>TEPAT WAKTU</small></div></div>
+      <div class="leg" id="dLeg"></div>
+    </div>
+    <div class="card">
+      <div class="hd"><div><h2>Pesan Terkini (Recent Messages)</h2><p class="sub2">Komunikasi terkini dari mitra nursery dan armada kurir</p></div><a class="lnk" href="#">Lihat Semua</a></div>
+      <ul class="msgs">
+        <li><span class="av">BS</span><div><b>Bambang S.</b> <span>(Nursery Lembang)</span><br><span>Bibit alpukat siap muat sore ini untuk pengiriman batch Malang.</span></div><time>10m lalu</time></li>
+        <li><span class="av g">SW</span><div><b>Siti Wahyuni</b> <span>(Petani Cabai)</span><br><span>Bibit cabai rawit hibrida tiba dalam kondisi segar &amp; media basah.</span></div><time>25m lalu</time></li>
+        <li><span class="av g">AK</span><div><b>Agus Kurnia</b> <span>(Driver 04)</span><br><span>Truk pendingin sedang unloading di greenhouse Depok.</span></div><time>1j lalu</time></li>
+        <li><span class="av">RA</span><div><b>Rina Anggraini</b> <span>(Penghobi)</span><br><span>Mohon info estimasi kedatangan Monstera Variegata ke Bandung.</span></div><time>2j lalu</time></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="row2">
+    <div class="card">
+      <div class="hd"><div><h2>Tren Penjualan</h2><p class="sub2">Statistik volume transaksi penjualan</p></div>
+        <div class="tabs" id="tabS"><button data-r="mingguan">Mingguan</button><button data-r="bulanan" class="on">Bulanan</button><button data-r="tahunan">Tahunan</button></div></div>
+      <div class="chart"><canvas id="salesChart" role="img" aria-label="Grafik tren penjualan"></canvas></div>
+      <div class="cfoot"><span id="sPer"></span><span class="up" id="sAvg"></span></div>
+    </div>
+    <div class="card">
+      <div class="top3"><h2>Penjualan per Kategori</h2><span class="ps" style="margin:0">Porsi</span></div>
+      <div id="catSales"></div>
+      <div class="note n2"><span data-i="leaf" style="display:contents"></span><span id="catSalesNote"></span></div>
+    </div>
+  </section>
+
+  <section class="row2">
+    <div class="card">
+      <div class="hd"><div><h2>Pergerakan Stok</h2><p class="sub2">Arus masuk dan keluar bibit periode berjalan</p></div>
+        <div class="tabs" id="tabM"><button data-r="mingguan">Mingguan</button><button data-r="bulanan" class="on">Bulanan</button><button data-r="tahunan">Tahunan</button></div></div>
+      <div class="lgd"><span><i style="background:#A9C3B0"></i>Stok masuk</span><span><i style="background:#263B30"></i>Stok keluar</span></div>
+      <div class="chart"><canvas id="moveChart" role="img" aria-label="Grafik pergerakan stok masuk dan keluar"></canvas></div>
+      <div class="cfoot"><span id="mPer"></span><span class="up" id="mNet"></span></div>
+    </div>
+    <div class="card">
+      <div class="top3"><h2>Stok per Kategori</h2><span class="ps" style="margin:0">DISTRIBUSI</span></div>
+      <div id="catStock"></div>
+      <div class="note"><span data-i="leaf" style="display:contents"></span><span id="catStockNote"></span></div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

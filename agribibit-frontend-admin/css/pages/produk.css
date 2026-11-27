@@ -1,0 +1,16 @@
+.stp{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:99px;background:var(--card);padding:3px}
+.stp button{width:32px;height:32px;border-radius:50%;border:0;background:none;cursor:pointer;font-size:16px;color:var(--mut)}
+.stp button:hover{background:var(--chip)}
+.stp span{min-width:40px;text-align:center;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700}
+.stp .menipis{color:#B6602B}
+.stp .habis{color:#B42323}
+.btn.red{color:#B42323}
+dialog .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+dialog .acts{display:flex;justify-content:flex-end;gap:10px;margin-top:4px}
+.fphoto{display:flex;gap:16px;align-items:center}
+.pv{width:88px;height:88px;border-radius:16px;border:2px dashed #B9C0B2;background:var(--chip);display:grid;place-items:center;overflow:hidden;color:var(--mut);flex:none}
+.pv img{width:100%;height:100%;object-fit:cover;display:block}
+.pa{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+
+.fsec{display:flex;flex-direction:column;gap:14px}
+.fsec[hidden]{display:none}

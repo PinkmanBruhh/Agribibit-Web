@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laporan Pengiriman | AgriBibit</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/data.js" defer></script>
+<script src="js/layout.js" defer></script>
+<script src="js/laporan-pengiriman.js" defer></script>
+</head>
+<body data-page="laporan-pengiriman" data-title="Laporan Pengiriman" data-crumb="Laporan">
+<div id="content" style="display:flex;flex-direction:column;gap:20px">
+  <div class="hd" style="margin:0;align-items:center"><div><h2 class="pt">Laporan Pengiriman</h2><p class="ps">Monitoring status paket bibit secara real-time antar pulau</p></div>
+    <div class="filters"><select class="in" style="min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:0 14px" aria-label="Periode"><option>Nov 2026</option></select><button class="btn" data-i="xls" id="xl">Ekspor Excel</button><button class="btn dk" data-i="pdf" id="pf">Ekspor PDF</button></div></div>
+  <section class="card">
+    <div class="hd"><div><div class="ttl"><h2>Laporan Pengiriman Bibit</h2><span class="lnk" style="background:var(--tint);color:var(--tinkt)">Katalog Aktif</span></div><p class="sub2">Status paket bibit terbaru antar pulau</p></div>
+      <div class="filters">
+        <label class="sbox" data-i="search" style="min-width:220px"><input type="search" id="q" placeholder="Cari pesanan..." aria-label="Cari pesanan"></label>
+        <select id="cat" aria-label="Kategori"><option value="">Semua Kategori</option><option value="sayur">Bibit Sayur</option><option value="buah">Bibit Buah</option><option value="hias">Tanaman Hias</option></select>
+        <select id="st" aria-label="Status"><option value="">Semua Status</option><option>Delivered</option><option>On Process</option></select>
+      </div></div>
+    <div class="tw"><table class="tbl">
+      <thead><tr><th>No</th><th>Recipient Name</th><th>Contact</th><th>Product</th><th>Fee</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody id="rows"></tbody></table></div>
+    <div class="foot"><span id="count"></span><div class="pg"><button disabled>Sebelumnya</button><button class="on" aria-current="page">1</button><button>2</button><button>3</button><button>Selanjutnya</button></div></div>
+  </section>
+</div>
+</body>
+</html>

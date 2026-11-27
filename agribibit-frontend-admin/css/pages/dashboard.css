@@ -1,0 +1,72 @@
+.row2{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:20px}
+.row3{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:20px}
+.hero{border-radius:28px;padding:34px 40px;color:#fff;background:linear-gradient(100deg,#BA7F58 0%,#8E9D6E 48%,#2F6D4F 85%,#2D6A4F 100%);display:flex;align-items:center;gap:24px;overflow:hidden}
+.hero>div{flex:1;min-width:0}
+.hero h2{margin:12px 0 8px;font-size:32px;line-height:1.15;max-width:560px}
+.hero p{margin:0 0 20px;max-width:560px;color:#F4F5F0}
+.hero svg{width:380px;flex:none}
+.hero .btn{background:var(--card);color:var(--pd);border-color:#fff}
+.hero .live{background:rgba(0,0,0,.22);border-color:transparent;color:#fff;font-weight:500;cursor:default}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+.stat{padding:18px}
+.stat .top2{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.stat .badge.o{background:var(--tint);color:var(--tinkt)}
+.stat small{color:var(--mut);display:block}
+.stat b{font-size:26px;line-height:1.2}
+.stat b.warn{color:#B4531F}
+.bar .bl{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px;margin-bottom:8px}
+.bar .bl b{font-weight:700}
+.donut{position:relative;height:210px}
+.donut .mid{position:absolute;inset:0;display:grid;place-content:center;text-align:center;pointer-events:none}
+.donut .mid b{font-size:32px;line-height:1.1}
+.donut .mid small{color:var(--mut);font-weight:600}
+.leg{display:flex;gap:18px;justify-content:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--mut);flex-wrap:wrap}
+.leg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.msgs{list-style:none;margin:0;padding:0}
+.msgs li{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line)}
+.msgs li:first-child{border-top:0}
+.msgs .av{background:var(--tint);color:var(--tinkt)}
+.msgs .av.g{background:#DDF1E6;color:var(--p)}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px}
+.lnk{background:#DDF1E6;color:var(--p);font-weight:600;border-radius:99px;padding:5px 14px;font-size:12px}
+.kebab{width:36px;height:36px;border:0;background:none;border-radius:50%;cursor:pointer;color:var(--mut)}
+.ttl{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.msgs b{font-size:14px}
+.msgs span{color:var(--mut);font-size:13px}
+.msgs time{margin-left:auto;font-size:12px;color:var(--mut);white-space:nowrap}
+.pill{display:inline-block;border-radius:99px;padding:3px 14px;font-size:12px;font-weight:600;white-space:nowrap}
+.pill.ok{background:#DDF1E6;color:#1B5E3F}
+.pill.wait{background:#FFF1E6;color:var(--tinkt);border:1.5px dashed var(--s)}
+@media(max-width:1000px){
+.row2,.row3{grid-template-columns:1fr}
+.hero{padding:26px}
+.hero svg{display:none}
+.hero h2{font-size:26px}
+}
+@media (prefers-reduced-motion:no-preference){
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:scaleY(0)}to{opacity:1;transform:none}}
+@keyframes flt{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes march{to{stroke-dashoffset:-9}}
+@keyframes dotp{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(64,145,108,.6)}70%,100%{box-shadow:0 0 0 8px rgba(64,145,108,0)}}
+@keyframes rowIn{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
+body[data-page=dashboard] .hero{animation:up .65s cubic-bezier(.2,.8,.2,1) both}
+body[data-page=dashboard] .rv:not(.seen){opacity:0}
+body[data-page=dashboard] .rv.seen{animation:up .7s cubic-bezier(.2,.8,.2,1) both}
+body[data-page=dashboard] .stat{animation:up .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(.2s + var(--i,0)*80ms);transition:transform .25s,box-shadow .25s}
+body[data-page=dashboard] .stat:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(15,82,56,.14)}
+body[data-page=dashboard] .hero svg{animation:flt 6s ease-in-out 1.4s infinite}
+body[data-page=dashboard] .hero svg .rise{transform-box:fill-box;transform-origin:50% 100%;animation:rise .9s cubic-bezier(.2,.9,.3,1.15) both}
+body[data-page=dashboard] .hero svg .r1{animation-delay:.5s}
+body[data-page=dashboard] .hero svg .r2{animation-delay:.7s}
+body[data-page=dashboard] .hero svg .r3{animation-delay:.9s}
+body[data-page=dashboard] .hero svg .march{animation:march 1s linear infinite}
+body[data-page=dashboard] .hero svg .dot{transform-box:fill-box;transform-origin:center;animation:dotp 1.8s ease-in-out 1.3s infinite}
+body[data-page=dashboard] .hero .live .dot{animation:pulse 1.8s infinite}
+body[data-page=dashboard] .bar:not(.in) .tk i{width:0}
+body[data-page=dashboard] .bar .tk i{transition:width 1.4s cubic-bezier(.2,.8,.2,1) .2s}
+body[data-page=dashboard] .msgs li{transition:background .2s,transform .2s;border-radius:12px}
+body[data-page=dashboard] .msgs li:hover{background:var(--bg);transform:translateX(4px)}
+.tbl tbody tr.ani{animation:rowIn .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*70ms)}
+}

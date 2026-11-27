@@ -1,0 +1,32 @@
+.set{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:20px;align-items:stretch}
+.fld{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:13px}
+.fld input,.fld select{min-height:44px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:0 14px;font:inherit;font-weight:400}
+.form2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.bigav{position:relative;width:120px;height:120px;border-radius:50%;border:2px dashed #B9C0B2;background:var(--chip);display:grid;place-items:center;margin:0 auto;color:var(--mut)}
+.bigav img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.cam{position:absolute;right:2px;bottom:2px;width:38px;height:38px;border-radius:50%;background:var(--p);color:#fff;display:grid;place-items:center;border:3px solid var(--card);cursor:pointer}
+.kv{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-top:1px solid var(--line)}
+.kv span{color:var(--mut)}
+@media(max-width:1000px){
+.set{grid-template-columns:1fr}
+.form2{grid-template-columns:1fr}
+}
+.sico.sq{width:44px;height:44px;border-radius:12px}
+.sico.sq.gy{background:#E7E9EE;color:#475467}
+.bigav>span>.ic{width:52px;height:52px;stroke-width:1.5;color:#8A93A0}
+.cam .ic{width:18px;height:18px}
+.dv{width:28px;display:grid;place-items:center;color:var(--mut);flex:none}
+.dv.on{color:var(--p)}
+.dv .ic{width:24px;height:24px}
+.loc{display:inline-flex;align-items:center;gap:6px}
+.loc .ic{width:16px;height:16px;color:var(--mut)}
+.bigav{border-style:solid;border-width:3px;border-color:var(--line);background:var(--chip)}
+.bigav>img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+
+.heroset{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:24px;align-items:center}
+.heroprev{aspect-ratio:1/1;border-radius:20px;background:var(--chip);border:1px solid var(--line);overflow:hidden;display:grid;place-items:center}
+.heroprev img{width:100%;height:100%;object-fit:contain;display:block}
+.herobox{display:flex;flex-direction:column;gap:14px}
+a.btn[download]{text-decoration:none}
+a.btn[hidden],.btn[hidden]{display:none}
+@media(max-width:700px){.heroset{grid-template-columns:1fr}.heroprev{max-width:260px}}

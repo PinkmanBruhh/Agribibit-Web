@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laporan Stok | AgriBibit</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/data.js" defer></script>
+<script src="js/layout.js" defer></script>
+<script src="js/laporan-stok.js" defer></script>
+</head>
+<body data-page="laporan-stok" data-title="Laporan Stok" data-crumb="Laporan">
+<div id="content" style="display:flex;flex-direction:column;gap:20px">
+  <div class="hd" style="margin:0;align-items:center">
+    <div>
+      <h2 class="pt">Laporan Stok</h2>
+      <p class="ps">Pantau persediaan dan riwayat keluar-masuk stok bibit</p>
+    </div>
+    <div class="filters">
+      <select class="in" id="per" style="min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:0 14px" aria-label="Periode"></select>
+      <button class="btn" data-i="xls" id="xl">Ekspor Excel</button>
+      <button class="btn dk" data-i="pdf" id="pf">Ekspor PDF</button>
+    </div>
+  </div>
+
+  <!-- RINGKASAN STOK -->
+  <section class="sc">
+    <div class="card"><div class="top3"><span class="ps" style="margin:0">Total Stok Bibit</span></div><b class="big" id="m0"></b><small id="c0"></small></div>
+    <div class="card"><div class="top3"><span class="ps" style="margin:0">Stok Menipis</span><span class="bd y">Perlu Reorder</span></div><b class="big" id="m1"></b><small id="c1"></small></div>
+    <div class="card"><div class="top3"><span class="ps" style="margin:0">Stok Habis</span><span class="bd r">Kritis</span></div><b class="big" id="m2"></b><small id="c2"></small></div>
+    <div class="card"><div class="top3"><span class="ps" style="margin:0">Nilai Persediaan</span></div><b class="big" id="m3"></b><small id="c3"></small></div>
+  </section>
+
+  <!-- RINCIAN STOK -->
+  <section class="card" style="padding:22px 0 0">
+    <div class="hd" style="padding:0 22px">
+      <div>
+        <h2>Rincian Stok</h2>
+        <p class="sub2">Informasi persediaan awal, mutasi masuk, keluar (terjual), rusak, dan stok akhir</p>
+      </div>
+      <select id="cat" class="in" style="min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:0 14px" aria-label="Kategori">
+        <option value="">Semua Kategori</option>
+        <option value="sayur">Sayur</option>
+        <option value="buah">Buah</option>
+        <option value="hias">Hias</option>
+      </select>
+    </div>
+    <div class="tw" style="margin:0">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Produk</th>
+            <th>Kategori</th>
+            <th>Awal</th>
+            <th>Masuk</th>
+            <th>Keluar</th>
+            <th>Rusak</th>
+            <th>Akhir</th>
+            <th>Status</th>
+            <th class="r">Riwayat</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="foot" style="padding:18px 22px 24px;margin:0"><span id="count"></span><div class="pg" id="pg"></div></div>
+  </section>
+
+  <!-- RIWAYAT KELUAR-MASUK STOK -->
+  <section class="card" id="logSection" style="padding:22px 0 0">
+    <div style="padding:0 22px">
+      <div class="hd" style="margin-bottom:14px">
+        <div>
+          <h2>Riwayat Keluar-Masuk Stok</h2>
+          <p class="sub2">Catatan penambahan stok masuk, penjualan otomatis toko online, dan bibit rusak</p>
+        </div>
+        <button class="btn" id="xlLog" data-i="dl">Ekspor Riwayat</button>
+      </div>
+      <div class="bar2" style="margin:0 0 16px;gap:10px;flex-wrap:wrap">
+        <div class="chips" id="logChips" role="group" aria-label="Filter jenis mutasi">
+          <button type="button" class="on" data-lt="">Semua</button>
+          <button type="button" data-lt="masuk">Stok Masuk</button>
+          <button type="button" data-lt="order">Terjual Online</button>
+          <button type="button" data-lt="rusak">Bibit Rusak</button>
+        </div>
+        <div class="filters" style="margin-left:auto">
+          <label class="sbox" data-i="search" style="max-width:260px">
+            <input type="search" id="logQ" placeholder="Cari bibit, nota, #PS..." aria-label="Cari riwayat">
+          </label>
+          <button type="button" class="btn sm" id="clearSkuFilter" hidden>Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tw" style="margin:0">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Waktu</th>
+            <th>Produk</th>
+            <th>Jenis</th>
+            <th>Jumlah</th>
+            <th>Keterangan</th>
+            <th>Pencatat</th>
+            <th class="r">Bukti</th>
+          </tr>
+        </thead>
+        <tbody id="logRows"></tbody>
+      </table>
+    </div>
+    <div class="foot" style="padding:18px 22px 24px;margin:0"><span id="logCount"></span><div class="pg" id="logPg"></div></div>
+  </section>
+
+  <!-- DIALOG BUKTI FOTO -->
+  <!-- MODAL BUKTI FOTO -->
+  <dialog id="proofDlg" class="od" aria-labelledby="prTitle">
+    <header class="odh">
+      <span class="bd g" id="prBadge" style="margin-bottom:4px">Bukti Stok</span>
+      <strong id="prTitle">Rincian Mutasi</strong>
+      <span class="odd" id="prSub"></span>
+    </header>
+    <div style="padding:16px 24px">
+      <div class="proof-img-box" id="prImgWrap"></div>
+    </div>
+    <div class="ods" id="prMeta"></div>
+    <div class="odf"><button type="button" class="btn pri" id="prClose">Tutup</button></div>
+  </dialog>
+</div>
+</body>
+</html>

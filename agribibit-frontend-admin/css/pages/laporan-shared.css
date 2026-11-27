@@ -1,0 +1,8 @@
+.note{display:flex;gap:10px;background:#DDF1E6;border-radius:14px;padding:14px;color:#0F5238;font-size:13px;margin-top:18px}
+.pcb{margin-top:18px}
+.pcb .a{display:flex;justify-content:space-between;font-weight:600}
+.pcb .tk{height:8px;background:var(--line);border-radius:99px;margin:8px 0 4px}
+.pcb .tk i{display:block;height:100%;border-radius:99px}
+.pcb .b{display:flex;justify-content:space-between;color:var(--mut);font-size:13px}
+.pcb .a i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+.in-g{color:var(--p);font-weight:700}

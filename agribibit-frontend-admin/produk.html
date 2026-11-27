@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Produk | AgriBibit</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/data.js" defer></script>
+<script src="js/layout.js" defer></script>
+<script src="js/produk.js" defer></script>
+</head>
+<body data-crumb="Produk">
+<script>
+  var AGRI_K = new URLSearchParams(location.search).get('kategori') || location.hash.slice(1) || 'sayur';
+  var AGRI_N = { sayur: 'Bibit Sayur', buah: 'Bibit Buah', hias: 'Bibit Tanaman Hias' };
+  if (!AGRI_N[AGRI_K]) AGRI_K = 'sayur';
+  document.body.dataset.page = 'produk-' + AGRI_K;
+  document.body.dataset.title = AGRI_N[AGRI_K];
+  document.title = AGRI_N[AGRI_K] + ' | AgriBibit';
+</script>
+<div id="content" style="display:flex;flex-direction:column;gap:20px">
+  <div class="hd" style="margin:0;align-items:center">
+    <div><h2 class="pt" id="pt"></h2><p class="ps">Kelola stok: tambah, edit, dan hapus bibit</p></div>
+    <div class="filters"><button class="btn" id="exp" data-i="dl">Ekspor</button><button class="btn pri" id="add" data-i="plus">Tambah Bibit</button></div>
+  </div>
+
+ <section class="sc three" aria-label="Ringkasan stok">
+    <div class="card"><div class="l" style="min-height:22px">Total Jenis</div><b class="big" id="sTot"></b><small id="sTotC"></small></div>
+    <div class="card"><div class="l">Stok Menipis<span class="bd y">Perlu Reorder</span></div><b class="big w" id="sLow"></b><small id="sLowC"></small></div>
+    <div class="card"><div class="l">Stok Habis<span class="bd r">Kritis</span></div><b class="big d" id="sOut"></b><small id="sOutC"></small></div>
+  </section>
+
+  <section class="card" style="padding:22px 0 0">
+    <div class="bar2" style="padding:0 22px;margin:0 0 18px;align-items:center">
+      <div class="filters" style="flex:1">
+        <label class="sbox" data-i="search" style="max-width:300px"><input type="search" id="q" placeholder="Cari nama atau SKU..." aria-label="Cari bibit"></label>
+        <select id="st" aria-label="Filter status"><option value="">Semua Status</option><option value="aman">Aman</option><option value="menipis">Menipis</option><option value="habis">Habis</option></select>
+      </div>
+      <div class="filters"><span class="ps" id="sel" style="margin:0">0 dipilih</span><button class="btn" id="bulk" disabled>Hapus Terpilih</button></div>
+    </div>
+    <div class="tw" style="margin:0"><table class="tbl">
+      <thead><tr><th style="width:56px"><input type="checkbox" class="ck2" id="all" aria-label="Pilih semua"></th><th>Nama Bibit</th><th>Harga</th><th>Stok</th><th>Status</th><th>Aksi</th></tr></thead>
+      <tbody id="rows"></tbody></table></div>
+    <div class="foot" style="padding:18px 22px 24px;margin:0"><span id="count"></span><div class="pg" id="pg"></div></div>
+  </section>
+
+  <dialog id="fd"><form id="ff" novalidate>
+    <h2 style="margin:0" id="fT"></h2>
+    <div class="fphoto"><div class="pv" id="pv"></div><div class="pa"><input type="file" id="fi" accept="image/*" hidden>
+      <div class="filters" style="gap:8px"><button type="button" class="btn" id="fb">Pilih Foto</button><button type="button" class="btn" id="fr" hidden>Hapus Foto</button></div>
+      <small class="ps" style="margin:0">Opsional. JPG atau PNG, maksimal 2 MB.</small></div></div>
+    <label>Nama bibit<input name="nama" maxlength="60" autocomplete="off"></label>
+    <label>SKU<input name="sku" maxlength="20" autocomplete="off"></label>
+    <label>Harga (Rp)<input name="harga" inputmode="numeric"></label>
+    <label>Stok minimum (batas menipis)<input name="min" inputmode="numeric"></label>
+    <p class="ps" id="fH" style="margin:0">Stok awal 0. Isi stok lewat tombol <b>Stok</b> di tabel, supaya tercatat di riwayat.</p>
+    <p class="err" id="fE" role="alert"></p>
+    <div class="acts"><button type="button" class="btn" id="fC">Batal</button><button type="submit" class="btn pri">Simpan</button></div>
+  </form></dialog>
+
+  <dialog id="sd" class="sd-dlg"><form id="sf" novalidate>
+    <h2 style="margin:0">Kelola Stok</h2>
+    <div class="sd-head" id="sI"></div>
+    <div class="sd-tabs" role="tablist">
+      <button type="button" class="on" data-t="masuk">Stok Masuk</button>
+      <button type="button" data-t="rusak">Bibit Rusak</button>
+    </div>
+
+    <div id="fMasuk" class="fsec">
+      <div class="two">
+        <label>Jumlah Masuk *<input name="jumlahMasuk" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="Contoh: 25"></label>
+        <label>Sumber Pengadaan
+          <select name="sumber">
+            <option value="Nota Supplier">Supplier Luar</option>
+            <option value="Hasil Semai Kebun">Semai Kebun Sendiri</option>
+          </select>
+        </label>
+      </div>
+      <div class="two">
+        <label>No. Nota / Batch *<input name="nota" maxlength="35" autocomplete="off" placeholder="SJ-202611-018"></label>
+        <label>Supplier / Kebun *<input name="supplier" maxlength="60" autocomplete="off" placeholder="Kebun Induk Batu"></label>
+      </div>
+      <div class="sd-upload">
+        <div class="pv" id="mpv"></div>
+        <div class="pa">
+          <input type="file" id="mi" accept="image/*" hidden>
+          <button type="button" class="btn" id="mb">Pilih Foto Nota</button>
+          <small class="ps" style="margin:0;font-size:12px">Wajib. Unggah foto nota / surat jalan sebagai bukti.</small>
+        </div>
+      </div>
+    </div>
+
+    <div id="fRusak" class="fsec" hidden>
+      <div class="two">
+        <label>Jumlah Rusak *<input name="jumlahRusak" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="Contoh: 2"></label>
+        <label>Alasan *
+          <select name="alasan">
+            <option value="">Pilih alasan</option>
+            <option value="Mati / Layu">Mati / Layu</option>
+            <option value="Busuk / Hama">Busuk / Hama</option>
+            <option value="Patah Fisik">Patah Fisik</option>
+          </select>
+        </label>
+      </div>
+      <label>Catatan / Lokasi (opsional)<input name="ket" maxlength="80" autocomplete="off" placeholder="Contoh: Rak Karantina B-2"></label>
+      <div class="sd-upload">
+        <div class="pv" id="rpv"></div>
+        <div class="pa">
+          <input type="file" id="ri" accept="image/*" hidden>
+          <button type="button" class="btn" id="rb">Pilih Foto Bukti</button>
+          <small class="ps" style="margin:0;font-size:12px">Wajib. Foto kondisi bibit rusak (stok aktif otomatis berkurang).</small>
+        </div>
+      </div>
+    </div>
+
+    <p class="err" id="sE" role="alert"></p>
+    <div class="acts"><button type="button" class="btn" id="sC">Batal</button><button type="submit" class="btn pri">Simpan</button></div>
+  </form></dialog>
+
+  <dialog id="dd"><h2 style="margin:0" id="dT"></h2><p class="ps" id="dM" style="margin:10px 0 22px"></p>
+    <div class="acts" style="display:flex;justify-content:flex-end;gap:10px"><button class="btn" id="dC">Batal</button><button class="btn pri" id="dOk" style="background:#B42323;border-color:#B42323">Ya, Hapus</button></div></dialog>
+</div>
+</body>
+</html>

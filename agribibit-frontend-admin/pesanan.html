@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semua Pesanan | AgriBibit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/data.js" defer></script>
+<script src="js/layout.js" defer></script>
+<script src="js/pesanan.js" defer></script>
+</head>
+<body data-page="pesanan-semua" data-title="Semua Pesanan" data-crumb="Pesanan">
+<div id="content" style="display:flex;flex-direction:column;gap:20px">
+  <div><h2 class="pt">Semua Pesanan</h2><p class="ps">Pantau seluruh pesanan masuk dari semua status</p></div>
+
+  <section class="sc" aria-label="Ringkasan pesanan">
+    <div class="card"><div class="l">Total Pesanan<span class="bd g" id="sNew"></span></div><b id="s0"></b><small style="color:var(--p);font-weight:600">Total transaksi tercatat</small></div>
+    <div class="card"><div class="l">Dalam Proses<span class="bd y">Antrean</span></div><b id="s1"></b><small>Sedang dikemas di Hub</small></div>
+    <div class="card"><div class="l">Dikirim<span class="bd b">Ekspedisi</span></div><b id="s2"></b><small>Dalam perjalanan kurir</small></div>
+  </section>
+
+  <section class="card" style="padding:26px 0 0">
+    <div style="padding:0 26px">
+      <div class="chips" id="chips" role="group" aria-label="Filter status">
+        <button class="on" data-s="">Semua</button><button data-s="Proses">Proses</button><button data-s="Dikirim">Dikirim</button><button data-s="Selesai">Selesai</button>
+      </div>
+      <div class="bar2">
+        <label class="sbox" data-i="search"><input type="search" id="q" placeholder="Cari ID atau penerima..." aria-label="Cari pesanan"></label>
+        <button class="btn" id="exp" data-i="dl">Ekspor</button>
+      </div>
+    </div>
+    <div class="tw" style="margin:0"><table class="tbl">
+      <thead><tr><th class="no">No</th><th>Kode Pesanan</th><th>Penerima</th><th>Produk</th><th>Tanggal Pesan</th><th>Total Bayar</th><th>Status</th><th class="r">Aksi</th></tr></thead>
+      <tbody id="rows"></tbody></table></div>
+    <div class="foot" style="padding:18px 26px 24px;margin:0"><span id="count"></span><div class="pg" id="pg"></div></div>
+  </section>
+
+  <dialog id="dlg" class="od" aria-labelledby="oNama">
+    <header class="odh"><strong id="oNama"></strong><span class="odc" id="oId"></span><span class="odd" id="oTgl"></span><span class="odd" id="oAddr" style="margin-top:4px;font-weight:500;color:var(--ink)"></span></header>
+    <div class="odl" id="oItems" tabindex="0" aria-label="Rincian barang"></div>
+    <div class="ods">
+      <div><span>Total harga barang</span><span id="oSub"></span></div>
+      <div><span>Ongkos kirim</span><span id="oOng"></span></div>
+      <div class="t"><span>Total bayar</span><span id="oTot"></span></div>
+      <div id="oStatWrap" style="border-top:1px solid var(--line);padding-top:10px;margin-top:6px;align-items:center">
+        <div>
+          <span style="font-weight:700;display:block">Status Gudang / Ekspedisi</span>
+          <small id="oStatHint" style="color:var(--mut);font-size:11.5px;display:block;margin-top:2px">Status Selesai hanya dapat dikonfirmasi oleh Pembeli.</small>
+        </div>
+        <select id="oStatSel" style="min-height:38px;border:1px solid var(--line);border-radius:10px;padding:0 12px;background:#fff;font-weight:600">
+          <option value="Proses">Proses</option>
+          <option value="Dikirim">Dikirim</option>
+        </select>
+        <span class="bd g" id="oBuyerDone" hidden style="color:#0F5238">Dikonfirmasi Pembeli</span>
+      </div>
+    </div>
+    <div class="odf" style="display:flex;gap:10px"><button type="button" class="btn" id="dClose" style="flex:1">Tutup</button><button type="button" class="btn pri" id="dSaveStat" style="flex:1">Simpan Status</button></div>
+  </dialog>
+</div>
+</body>
+</html>

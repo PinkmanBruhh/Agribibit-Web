@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laporan Penjualan | AgriBibit</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/data.js" defer></script>
+<script src="js/layout.js" defer></script>
+<script src="js/laporan-penjualan.js" defer></script>
+</head>
+<body data-page="laporan-penjualan" data-title="Laporan Penjualan" data-crumb="Laporan">
+<div id="content" style="display:flex;flex-direction:column;gap:20px">
+<div class="hd" style="margin:0;align-items:center"><div><h2 class="pt">Laporan Penjualan</h2><p class="ps">Ringkasan penjualan dan performa pesanan per periode</p></div><div class="filters"><select class="in" id="per" style="min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:0 14px" aria-label="Periode"></select><button class="btn" data-i="xls" id="xl">Ekspor Excel</button><button class="btn dk" data-i="pdf" id="pf">Ekspor PDF</button></div></div><section class="sc"><div class="card"><div class="top3"><span class="ps" style="margin:0">Total Penjualan</span></div><b class="big" id="m0"></b><small id="c0"></small></div><div class="card"><div class="top3"><span class="ps" style="margin:0">Bibit Terkirim</span></div><b class="big" id="m1"></b><small id="c1"></small></div><div class="card"><div class="top3"><span class="ps" style="margin:0">Pesanan Selesai</span></div><b class="big" id="m2"></b><small id="c2"></small></div></section><section class="card"><h2>Rincian per Kategori</h2><p class="sub2">Detail volume pengiriman dan pendapatan per kelompok komoditas</p><div class="tw" style="margin-top:14px"><table class="tbl"><thead><tr><th>Kategori</th><th>Pesanan</th><th>Terkirim</th><th>Pendapatan</th></tr></thead><tbody id="rows"></tbody></table></div></section>
+</div>
+</body>
+</html>

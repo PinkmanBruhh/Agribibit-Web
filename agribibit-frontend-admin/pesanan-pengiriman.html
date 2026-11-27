@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pengiriman | AgriBibit</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/data.js" defer></script>
+<script src="js/layout.js" defer></script>
+<script src="js/pesanan-pengiriman.js" defer></script>
+</head>
+<body data-page="pesanan-pengiriman" data-title="Pengiriman" data-crumb="Pesanan">
+<div id="content" style="display:flex;flex-direction:column;gap:20px">
+<div class="hd" style="margin:0;align-items:center"><div><h2 class="pt">Pengiriman</h2><p class="ps">Lacak paket ekspedisi secara live (konfirmasi selesai hanya oleh Pembeli)</p></div></div><section class="sc three"><div class="card"><div class="top3"><span class="ps" style="margin:0;text-transform:uppercase;letter-spacing:.04em">Dalam perjalanan</span><span class="sico " data-i="truck"></span></div><div class="nrow"><b id="sh0">0</b><span class="bd b">Kurir &amp; Hub</span></div></div><div class="card"><div class="top3"><span class="ps" style="margin:0;text-transform:uppercase;letter-spacing:.04em">Menunggu konfirmasi buyer</span><span class="sico o" data-i="home"></span></div><div class="nrow"><b id="sh1">0</b><span class="bd y">Tiba di alamat</span></div></div><div class="card"><div class="top3"><span class="ps" style="margin:0;text-transform:uppercase;letter-spacing:.04em">Diterima pembeli</span><span class="sico " data-i="okc"></span></div><div class="nrow"><b id="sh2">0</b><span class="bd g">Selesai</span></div></div></section><section class="split"><div class="card"><div class="bar2" style="margin:0 0 14px"><label class="sbox" data-i="search"><input type="search" id="q" placeholder="Cari ID atau penerima..." aria-label="Cari paket"></label><button class="btn" id="exp" data-i="dl">Ekspor</button></div><div class="tw"><table class="tbl"><thead><tr><th>ID</th><th>Penerima</th><th>Kurir</th><th>No. Resi</th><th>Estimasi</th><th>Status</th><th>Lacak</th></tr></thead><tbody id="rows"></tbody></table></div><div class="foot"><span id="count"></span><div class="pg"><button disabled>Sebelumnya</button><button class="on" aria-current="page">1</button><button>2</button><button>Selanjutnya</button></div></div></div><aside class="card" id="trk" aria-live="polite"></aside></section>
+</div>
+</body>
+</html>

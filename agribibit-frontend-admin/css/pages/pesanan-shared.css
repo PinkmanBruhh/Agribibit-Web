@@ -1,0 +1,14 @@
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chips button{min-height:44px;padding:0 22px;border-radius:99px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-weight:500}
+.chips .on{background:var(--inv);border-color:var(--inv);color:#fff}
+.st.selesai{background:#DDF1E6;color:#1B5E3F}
+.st.dikirim{background:#E1EEFA;color:#0C5A8A;border:1px solid #BFDDF2}
+.st.proses{background:#FFF1E6;color:var(--tinkt);border:1.5px dashed var(--s)}
+.st.retur{background:var(--inv);color:#fff}
+dialog dt{color:var(--mut)}
+.nrow{display:flex;align-items:center;gap:10px;margin-top:10px}
+.nrow b{font-size:34px;line-height:1.1}
+.kd{width:10px;height:10px;border-radius:50%}
+.kn{margin-left:auto;background:var(--chip);border-radius:99px;padding:0 10px;font-size:12px;font-weight:600}
+.btn.gr{background:var(--p);border-color:var(--p);color:#fff}
+.dotp.a{background:#FFF1D6;color:#8A4B00}

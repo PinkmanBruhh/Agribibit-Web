@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pengembalian | AgriBibit</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/data.js" defer></script>
+<script src="js/layout.js" defer></script>
+<script src="js/pesanan-pengembalian.js" defer></script>
+</head>
+<body data-page="pesanan-pengembalian" data-title="Pengembalian" data-crumb="Pesanan">
+<div id="content" style="display:flex;flex-direction:column;gap:20px">
+<div class="hd" style="margin:0;align-items:center"><div><h2 class="pt">Pengembalian</h2><p class="ps">Tinjau permintaan retur dan putuskan setujui atau tolak</p></div></div><section class="sc three"><div class="card"><div class="top3"><span class="ps" style="margin:0">Menunggu Review</span><span class="kd" style="background:#E8B923"></span></div><div class="nrow"><b id="n0">0</b><span class="bd y">Perlu Respons Segera</span></div></div><div class="card"><div class="top3"><span class="ps" style="margin:0">Disetujui</span><span class="kd" style="background:#1FA67A"></span></div><div class="nrow"><b id="n1">0</b><span class="bd g">Proses Refund/Ganti</span></div></div><div class="card"><div class="top3"><span class="ps" style="margin:0">Ditolak</span><span class="kd" style="background:#8A93A0"></span></div><div class="nrow"><b id="n2">0</b><span class="bd ">Selesai Evaluasi</span></div></div></section><section class="card" style="padding:22px 0 0"><div class="bar2" style="padding:0 22px;margin:0 0 16px"><div class="chips" id="chips"><button class="on" data-s="">Semua</button><button data-s="Menunggu">Menunggu</button><button data-s="Disetujui">Disetujui</button><button data-s="Ditolak">Ditolak</button></div><button class="btn" id="sort" data-i="sort">Urutkan</button></div><div class="tw" style="margin:0"><table class="tbl"><thead><tr><th>ID Retur</th><th>Pesanan</th><th>Penerima</th><th>Produk</th><th>Alasan</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="rows"></tbody></table></div><div class="foot" style="padding:18px 22px 24px;margin:0"><span id="count"></span><div class="pg"><button disabled>Sebelumnya</button><button class="on" aria-current="page">1</button><button>2</button><button>Selanjutnya</button></div></div></section><dialog id="dlg"><h2 style="margin:0" id="dId"></h2><dl id="dBody"></dl><button class="btn pri" id="dClose">Tutup</button></dialog>
+</div>
+</body>
+</html>
